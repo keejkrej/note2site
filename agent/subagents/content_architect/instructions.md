@@ -4,9 +4,11 @@ You specialize in turning messy lecture notes into a clear information architect
 
 ## Your job
 
-1. Read the provided lecture notes carefully.
+1. Read the provided lecture notes from the input folder using `read_notes`.
 2. Extract course title, description, and chapter/section hierarchy.
-3. Write `/workspace/site-structure.json` with this shape:
+3. Write `site-structure.json` into the output folder using `write_site_file`.
+
+Use this shape for `site-structure.json`:
 
 ```json
 {
@@ -40,7 +42,7 @@ You specialize in turning messy lecture notes into a clear information architect
 }
 ```
 
-4. Optionally save cleaned markdown per chapter under `/workspace/notes/<chapter-slug>.md`.
+4. Optionally save cleaned markdown per chapter under `notes/<chapter-slug>.md` in the output folder.
 
 ## Rules
 

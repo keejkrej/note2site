@@ -1,4 +1,4 @@
-Use when the user provides lecture notes, course materials, slides text, or academic content to convert into a website.
+Use when the user provides lecture notes, course materials, or academic content to convert into a website.
 
 # Parse lecture notes
 
@@ -10,6 +10,8 @@ Scan the input for:
 - **Chapters / lectures** — numbered sections, week labels, or topic headings
 - **Subsections** — H2/H3-level topics within each chapter
 - **Key artifacts** — definitions, theorems, formulas, code samples, diagrams, examples, exercises, references
+
+Visual notes (images and PDF pages) are already transcribed into `outputDir/transcripts/` before this skill is loaded. Read those transcripts alongside text files.
 
 ## 2. Normalize content
 
@@ -31,7 +33,7 @@ Create a mental (or written) outline:
 }
 ```
 
-Save this to `/workspace/site-structure.json` using `write_file`.
+Save this to `site-structure.json` in the output folder using `write_site_file`.
 
 ## 3. Flag issues
 

@@ -1,48 +1,36 @@
-Use when you need to create or re-scaffold the Next.js project under `/workspace/site`.
+Use when you need to create or re-scaffold the Next.js project in the output folder.
 
 # Scaffold a Next.js full-stack site
 
 ## Prerequisites
 
-- Target directory: `/workspace/site`
-- If a partial project exists, inspect it first with `glob` and `read_file` before overwriting.
+- Target directory: the `outputDir` from the conversion context.
+- If a partial project exists, inspect it first with `list_site_pages` before overwriting.
 
 ## Create the project
 
-If `/workspace/site` is empty or missing `package.json`, scaffold with:
-
-```bash
-cd /workspace && npx create-next-app@latest site \
-  --typescript \
-  --tailwind \
-  --eslint \
-  --app \
-  --src-dir \
-  --import-alias "@/*" \
-  --turbopack \
-  --yes
-```
+If the output folder is empty or missing `package.json`, scaffold with the `scaffold_nextjs` tool. It runs `create-next-app@latest` with TypeScript, Tailwind, ESLint, App Router, `src/` directory, `@/*` import alias, and Turbopack.
 
 ## Required dependencies
 
-After scaffold, add UI and content libraries as needed:
+After scaffold, add UI and content libraries as needed by writing a `package.json` script or running `npm install` inside the output folder via `build_site` with `install=true`.
 
-```bash
-cd /workspace/site && npm install lucide-react clsx tailwind-merge class-variance-authority
-```
+Recommended packages:
 
-For MDX or rich content, optionally add:
-
-```bash
-npm install @next/mdx @mdx-js/loader @mdx-js/react
-```
+- `lucide-react`
+- `clsx`
+- `tailwind-merge`
+- `class-variance-authority`
 
 ## Project structure
 
 Organize the generated site like this:
 
 ```text
-site/
+outputDir/
+├── package.json
+├── next.config.ts
+├── tsconfig.json
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx          # Root layout with nav + theme
@@ -66,12 +54,11 @@ site/
 │   └── lib/
 │       ├── content.ts          # Load parsed notes / site structure
 │       └── utils.ts
-└── package.json
 ```
 
 ## Full-stack minimum
 
-Every site must include at least one **Route Handler** under `src/app/api/`:
+Every site must include at least one Route Handler under `src/app/api/`:
 
 - `GET /api/search?q=...` — search page titles and content
 - `GET /api/chapters` — return chapter JSON from `site-structure.json`
